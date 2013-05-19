@@ -31,9 +31,10 @@ public:
 		value = false;
 	}
 
-	virtual void setValue(bool _value){
+	virtual void setValue(bool _value, bool renderNow = true){
 		value = _value;
-		render(false);
+		if(renderNow)
+			render(false);
 	}
 
 	virtual int getValue(){

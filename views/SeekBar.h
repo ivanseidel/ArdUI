@@ -79,8 +79,7 @@ public:
 				
 			case ACTION_DOWN:
 			case ACTION_MOVE:
-	        	_value = intersectActionEvent(&evt);
-	        	render(false);
+	        	setValue(intersectActionEvent(&evt), true); // true to render now
 	        	break;
 
 	        case ACTION_HOVER_EXIT:

@@ -48,8 +48,8 @@ public:
 		return getValue();
 	}
 
-	virtual bool setChecked(bool value){
-		setValue(value);
+	virtual bool setChecked(bool value, bool renderNow = true){
+		setValue(value, renderNow);
 	}
 
 	virtual void render(bool forceRender = false){
@@ -62,9 +62,6 @@ public:
 		// so let's reset ispressing just in case...
 		if(forceRender)
 			_isPressing = false;
-
-		// Set font
-		ArdUI::LCD->setFont(OCR_A_Extended_M);
 		
 		ArdUI::LCD->setColor(cBgHit);
 		ArdUI::LCD->drawRoundRect(_x1, _y1, _x2, _y2);

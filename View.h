@@ -41,6 +41,7 @@ public:
 	typedef void(*onRenderHandler)(void);
 	typedef void(*callback)(void);
 	typedef void(*callback_int)(int);
+	typedef void(*callback_long)(long);
 	typedef void(*callback_float)(float);
 	typedef void(*callback_bool)(bool);
 

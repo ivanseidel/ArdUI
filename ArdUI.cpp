@@ -3,8 +3,6 @@
 #include "View.h"
 #include "ViewGroup.h"
 
-#include "ActivityManager.h"
-
 #ifdef DEBUG
 	#pragma message("ArdUI DEBUG Mode is ON")
 #endif
@@ -102,6 +100,7 @@ void ArdUI::setup(){
 
 // Method that handles touch on screen and send Events
 void ArdUI::touchHandler(){
+	debug("ArdUI::touchHandler");
 	static bool is_touching = false, same_spot = false;
 	static int lastRootViewID = 0, x, y;
 	static ActionEvent event;	// Static to not spend memory

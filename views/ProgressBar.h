@@ -29,7 +29,7 @@ protected:
 
 	int _lastSize;
 
-	callback_int _onChange;
+	callback_long _onChange;
 
 public:
 	Color 	cBg,
@@ -168,7 +168,7 @@ public:
 		}
 	}
 
-	virtual void onChange(callback_int callback){
+	virtual void onChange(callback_long callback){
 		_onChange = callback;
 	}
 
@@ -182,6 +182,10 @@ public:
 
 	virtual long getMax(){
 		return _max;
+	}
+
+	virtual long setMin(long min){
+		_min = min;
 	}
 
 	virtual long getMin(){
