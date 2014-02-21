@@ -118,7 +118,7 @@ void ArdUI::touchHandler(){
 	if(touchObject->dataAvailable()){
 
 		touchObject->read();
-		x = 800 - touchObject->getX();
+		x = touchObject->getX(); //Change this to x=xmax-... if your screen is mirrored
 		y = touchObject->getY();
 
 		// Check if is the same spot touched
