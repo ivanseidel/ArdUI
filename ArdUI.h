@@ -99,6 +99,7 @@ protected:
 	static bool enabled;
 	
 public:
+
 	// Touch modes
 	enum TouchTriggerMode{
 		NONE,				// No touch is enabled
@@ -158,6 +159,14 @@ public:
 		from external interrupts, we need it to be public.
 	*/
 	static void touchHandler();
+
+	/*
+		This is the callback method for ALL views,
+		called everytime a invalidate() is done over a view.
+
+		Setup properly this method, to receive this events.
+	*/
+	static callback onInvalidateView;
 };
 
 #endif

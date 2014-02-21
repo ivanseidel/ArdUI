@@ -22,6 +22,7 @@ void ViewGroup::fixArray(){
 				if(views[j])
 				{
 					views[i] = views[j];
+				}else{
 					break;
 				}
 			}
@@ -30,7 +31,7 @@ void ViewGroup::fixArray(){
 }
 
 bool ViewGroup::addView(View* view){
-	if(total_views >= MAX_VIEWS || !view)
+	if(total_views >= MAX_VIEWS)
 		return false;
 
 	// Checks if Current view is not already on the array
@@ -125,5 +126,9 @@ View* ViewGroup::hitTest(long x, long y){
 		if(test)
 			return test;
 	}
+	
+	if(View::hitTest(x, y))
+		return this;
+
 	return 0; // NULL
 }

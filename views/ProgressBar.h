@@ -31,6 +31,8 @@ protected:
 
 	callback_long _onChange;
 
+	String title;
+
 public:
 	Color 	cBg,
 			cProgress,
@@ -45,7 +47,7 @@ public:
 				// This is done, because we can implement
 				// circular progressbar, point progressbar...
 
-	ProgressBar(){
+	ProgressBar(){//String _title = ""){
 		// Call super method
 		View::View();
 
@@ -68,6 +70,8 @@ public:
 		_onChange = NULL;
 
 		_requestTouch = false;
+
+		// title = _title;
 	}
 
 	virtual void render(bool forceRender = false){
@@ -114,10 +118,13 @@ public:
 					_x2,
 					_y2);
 
-				// Print name
+				// Print value and title
 				ArdUI::LCD->setBackColor(cBLACK);
 				ArdUI::LCD->setColor(cText);
 				ArdUI::LCD->print(out, _x2+3, (_y2-_y1)/2 + _y1 - 12);
+
+				if(forceRender)
+					ArdUI::LCD->print(title, _x1, _y1 - 30);
 
 				break;
 			case LINEAR_RIGHT:
@@ -144,10 +151,13 @@ public:
 					_x1+progressPx,
 					_y2);
 
-				// Print name
+				// Print value and title
 				ArdUI::LCD->setBackColor(cBLACK);
 				ArdUI::LCD->setColor(cText);
 				ArdUI::LCD->print(out, _x2+3, (_y2-_y1)/2 + _y1 - 12);
+
+				if(forceRender)
+					ArdUI::LCD->print(title, _x1, _y1 - 30);
 				break;
 		}
 
@@ -155,7 +165,7 @@ public:
 	}
 
 
-	virtual void setValue(long value, bool renderNow = true){
+	virtual void setValue(long value, bool renderNow = false){
 		_value = value;
 
 		if(_onChange)
@@ -166,6 +176,15 @@ public:
 		}else{
 			invalidate();
 		}
+	}
+
+	virtual void setTitle(String _title, bool renderNow = false){
+		title = _title;
+
+		if(renderNow)
+			render(true);
+		else
+			invalidate();
 	}
 
 	virtual void onChange(callback_long callback){

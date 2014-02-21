@@ -31,10 +31,14 @@ public:
 		value = false;
 	}
 
-	virtual void setValue(bool _value, bool renderNow = true){
+	virtual void setValue(bool _value, bool renderNow = false){
 		value = _value;
 		if(renderNow)
 			render(false);
+		else
+			invalidate();
+
+		onChange();
 	}
 
 	virtual int getValue(){

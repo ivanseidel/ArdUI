@@ -56,13 +56,21 @@ public:
 		_invalidate = false;
 	}
 
-	virtual void setValue(String _text, bool renderNow = true){
+	virtual void setValue(String _text, bool renderNow = false){
 		text = _text;
 		if(renderNow){
 			render(false);
 		}else{
 			invalidate();
 		}
+	}
+
+	void setValue(long _text, bool renderNow = false){
+		setValue(String(_text));
+	}
+
+	void setValue(int _text, bool renderNow = false){
+		setValue(String(_text));
 	}
 
 	virtual String getValue(){

@@ -8,6 +8,9 @@
 #endif
 
 // Default Setup
+callback ArdUI::onInvalidateView = NULL;
+
+
 bool ArdUI::enabled = false;
 UTFT* ArdUI::LCD = NULL;
 
@@ -115,7 +118,7 @@ void ArdUI::touchHandler(){
 	if(touchObject->dataAvailable()){
 
 		touchObject->read();
-		x = touchObject->getX();
+		x = 800 - touchObject->getX();
 		y = touchObject->getY();
 
 		// Check if is the same spot touched

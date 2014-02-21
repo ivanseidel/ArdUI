@@ -9,7 +9,7 @@
 #include <UTouch.h>
 #include <DueTimer.h>
 
-int InterruptPin = 31;
+int InterruptPin = 2;
 
 // Views
 ViewGroup *holder;
@@ -20,8 +20,8 @@ SeekBar *skbr;
 TextView *txtView;
 
 // LCD and Touch objects
-UTFT myLCD(ITDB50,41,42,43,53);
-UTouch myTCH = UTouch(27,28,29,30,InterruptPin);
+UTFT myLCD(CTE50,25,26,27,28);
+UTouch myTCH = UTouch(6,5,32,3,InterruptPin);
 
 // Fonts
 extern uint8_t BigFont[];
@@ -56,7 +56,7 @@ void setup(){
 	ArdUI::touchInterrupt = InterruptPin;		// Interrupt pin of Touch
     ArdUI::touchTimer =  &Timer1;				// Configure the Timer
     ArdUI::touchObject = &myTCH;				// Configure the Touch
-    ArdUI::touchMode = ArdUI::INTERRUPT_TIMER;	// Let's use the best mode
+    ArdUI::touchMode = ArdUI::TIMER_ONLY;	// For compatibility with latest UTFT and UTouch libraries
     ArdUI::touchTimerPeriod  = 50000;			// 50ms of period
     ArdUI::LCD = &myLCD; 						// Configure our LCD
 
