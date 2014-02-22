@@ -59,6 +59,7 @@ void setup(){
     ArdUI::touchMode = ArdUI::TIMER_ONLY;	// For compatibility with latest UTFT and UTouch libraries
     ArdUI::touchTimerPeriod  = 50000;			// 50ms of period
     ArdUI::LCD = &myLCD; 						// Configure our LCD
+    ArdUI::touchPerception = ArdUI::NORMAL; // Correct touch if it is mirrored relative to X or Y
 
 	// Buton setup
 	btn = new Button();

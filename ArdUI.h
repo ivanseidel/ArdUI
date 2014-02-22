@@ -30,7 +30,7 @@
 #include <UTFT.h>
 
 #ifndef DEBUG_FUNCS
-// #define DEBUG
+//#define DEBUG
 #define DEBUG_FUNCS 1
 #ifdef DEBUG
     inline void debug(const char *s) { Serial.println(s); }
@@ -108,6 +108,13 @@ public:
 		INTERRUPT_TIMER 	// Intercalates bettwen interrupt and Timer (BEST)
 	};
 
+	enum TouchPerception{
+		NORMAL,
+		INVERTED_X,
+		INVERTED_Y,
+		INVERTED_X_Y
+	};
+
 	/*
 		This is the CURRENT ROOT View object.
 
@@ -128,6 +135,9 @@ public:
 
 	// Trigger mode. Best is INTERRUPT_TIMER
 	static TouchTriggerMode touchMode;
+	// Touch perception mode.
+	static TouchPerception touchPerception;
+
 	// Touch object (read data from touch)
 	static UTouch* touchObject;
 
