@@ -30,7 +30,7 @@
 #include <UTFT.h>
 
 #ifndef DEBUG_FUNCS
-// #define DEBUG
+//#define DEBUG
 #define DEBUG_FUNCS 1
 #ifdef DEBUG
     inline void debug(const char *s) { Serial.println(s); }
@@ -99,12 +99,20 @@ protected:
 	static bool enabled;
 	
 public:
+
 	// Touch modes
 	enum TouchTriggerMode{
 		NONE,				// No touch is enabled
 		INTERRUPT_ONLY,		// Interrupt mode is enabled (Consumes LOT of CPU)
 		TIMER_ONLY,			// Consumes less, but frequently CPU
 		INTERRUPT_TIMER 	// Intercalates bettwen interrupt and Timer (BEST)
+	};
+
+	enum TouchPerception{
+		NORMAL,
+		INVERTED_X,
+		INVERTED_Y,
+		INVERTED_X_Y
 	};
 
 	/*
@@ -127,6 +135,9 @@ public:
 
 	// Trigger mode. Best is INTERRUPT_TIMER
 	static TouchTriggerMode touchMode;
+	// Touch perception mode.
+	static TouchPerception touchPerception;
+
 	// Touch object (read data from touch)
 	static UTouch* touchObject;
 
@@ -158,6 +169,14 @@ public:
 		from external interrupts, we need it to be public.
 	*/
 	static void touchHandler();
+
+	/*
+		This is the callback method for ALL views,
+		called everytime a invalidate() is done over a view.
+
+		Setup properly this method, to receive this events.
+	*/
+	static callback onInvalidateView;
 };
 
 #endif

@@ -63,6 +63,7 @@ protected:
 public:
 	SeekBar(){
 		ProgressBar::ProgressBar();
+		
 		// Increases bound sizes, to facilitate touch
 		_left = 30;
 		_bottom = 30;

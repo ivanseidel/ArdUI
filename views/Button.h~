@@ -25,7 +25,7 @@
 #define DEF_cTextHit	cBLACK
 #define DEF_cBorder		cGREEN
 
-//extern uint8_t OCR_A_Extended_M[];	// Font
+extern uint8_t OCR_A_Extended_M[];	// Font
 
 class Button: public View{
 protected:
@@ -66,7 +66,7 @@ public:
 			_isPressing = false;
 
 		// Set font
-		//ArdUI::LCD->setFont(OCR_A_Extended_M);
+		ArdUI::LCD->setFont(OCR_A_Extended_M);
 
 		// Render button bg for current state
 		if(_isPressing){

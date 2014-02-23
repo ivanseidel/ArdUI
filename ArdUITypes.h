@@ -85,6 +85,15 @@ enum Alignment{
 	ALIGN_RIGHT // Force alignment to the Right of orientation (o)
 };
 
+/*
+	This is an simple enum to keep both VERTICAL and HORIZONTAL
+	types of orientation
+*/
+enum Orientation{
+	VERTICAL,	// Vertical Orientation
+	HORIZONTAL 	// Horizontal Orientation
+};
+
 
 /*
 	This is the struct that will be sent to the views whenever an
@@ -104,5 +113,15 @@ typedef uint16_t Color;
 inline Color color(int r, int g, int b){
 	return (((r&248)|g>>5) << 8) | ((g&28)<<3|b>>3);
 }
+
+
+// Default function callbacks definitions
+typedef void(*onEventHandler)(ActionEvent evt);
+typedef void(*onRenderHandler)(void);
+typedef void(*callback)(void);
+typedef void(*callback_int)(int);
+typedef void(*callback_long)(long);
+typedef void(*callback_float)(float);
+typedef void(*callback_bool)(bool);
 
 #endif

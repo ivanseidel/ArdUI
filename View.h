@@ -36,25 +36,7 @@
 class View
 {
 public:
-	// Default function callbacks definitions
-	typedef void(*onEventHandler)(ActionEvent evt);
-	typedef void(*onRenderHandler)(void);
-	typedef void(*callback)(void);
-	typedef void(*callback_int)(int);
-	typedef void(*callback_long)(long);
-	typedef void(*callback_float)(float);
-	typedef void(*callback_bool)(bool);
-
-	/*
-		This is the callback method for ALL views,
-		called everytime a invalidate() is done over a view.
-
-		Setup properly this method, to receive this events.
-	*/
-	static callback onInvalidateView;
-
 	int ViewID;					// The View ID (Created on the instantiation)
-
 
 	/*
 	 

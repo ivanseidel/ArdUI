@@ -1,9 +1,8 @@
 #include <Arduino.h>
 
+#include "ArdUI.h"
 #include "View.h"
 #include "Graphics.h"
-
-View::callback View::onInvalidateView = NULL;
 
 View::View(){
 	_onTouch = NULL;
@@ -109,6 +108,6 @@ int View::y2(){
 
 void View::invalidate(){
 	_invalidate = true;
-	if(View::onInvalidateView)
-		View::onInvalidateView();
+	if(ArdUI::onInvalidateView)
+		ArdUI::onInvalidateView();
 }

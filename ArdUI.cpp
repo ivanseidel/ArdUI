@@ -8,12 +8,18 @@
 #endif
 
 // Default Setup
+callback ArdUI::onInvalidateView = NULL;
+
+
 bool ArdUI::enabled = false;
 UTFT* ArdUI::LCD = NULL;
 
 View* ArdUI::rootView = 0; 	// NULL
 
 ArdUI::TouchTriggerMode ArdUI::touchMode = ArdUI::INTERRUPT_TIMER;
+
+ArdUI::TouchPerception ArdUI::touchPerception = ArdUI::NORMAL;
+
 UTouch* ArdUI::touchObject = 0; 	// NULL
 
 int ArdUI::touchInterrupt = -1;
@@ -115,8 +121,22 @@ void ArdUI::touchHandler(){
 	if(touchObject->dataAvailable()){
 
 		touchObject->read();
-		x = touchObject->getX();
-		y = touchObject->getY();
+		if (touchPerception==NORMAL){
+			x = touchObject->getX();
+			y = touchObject->getY();
+		}
+		if (touchPerception==INVERTED_X){
+			x = LCD->getDisplayXSize() - touchObject->getX();
+			y = touchObject->getY();
+		}
+		if (touchPerception==INVERTED_Y){
+			x = touchObject->getX();
+			y = LCD->getDisplayYSize() - touchObject->getY();
+		}
+		if (touchPerception==INVERTED_X_Y){
+			x = LCD->getDisplayXSize() - touchObject->getX();
+			y = LCD->getDisplayYSize() - touchObject->getY();
+		}
 
 		// Check if is the same spot touched
 		same_spot = false;
